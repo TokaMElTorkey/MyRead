@@ -13,20 +13,22 @@ class BooksApp extends Component {
 
   //To get all data from booksAPI
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
+    BooksAPI.getAll()
+    .then((books) => {
       this.setState({
-          books: books
+          books
       });
     })
   }
 
   //To Move books between shelfs
-  changeBShelf = (book, newShelf) => {
-    book.props.book.shelf = newShelf;
-    this.setState( (state) => ({
-      books: state.books.filter( (e) => e.id !== book.props.book.id).concat([book.props.book])
-    }))
-    BooksAPI.update(book.props.book, newShelf);
+  changeBookShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    .then((responde) => {
+      BooksAPI.getAll().then((books) => {
+        this.setState({ books })
+      })
+    })
   }
 
 
@@ -40,7 +42,7 @@ class BooksApp extends Component {
             </div>
             <BookList
               books={this.state.books}
-              onChangeShelf={this.changeBShelf}
+              onChangeShelf={this.changeBookShelf}
             />
             <div className="open-search">
               <Link
@@ -53,8 +55,7 @@ class BooksApp extends Component {
 
         <Route path="/search" render={() => (
           <Search
-            searchBooks={this.state.books}
-            onChangeShelf={this.changeBShelf}
+            onChangeShelf={this.changeBookShelf}
           />
         )}
         />

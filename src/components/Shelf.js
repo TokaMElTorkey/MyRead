@@ -1,33 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import BookItem from "./BookItem"
 
-const Shelf = function (props) {
-	let handleBookShelf = (book, shelf) => {
-		props.onChangeShelf(book, shelf);
-	}
-
-	return (
-		<div className="bookshelf">
-			<h2 className="bookshelf-title">{props.title}</h2>
-			<div className="bookshelf-books">
-				<ol className="books-grid">
-					{props.books.map((book) => (
-						<li key={book.id}>
+class Shelf extends Component {
+  static propTypes = {
+    bShelf: PropTypes.array.isRequired,
+    onChangeShelf: PropTypes.func.isRequired,
+		title: PropTypes.string.isRequired
+  }
+  render() {
+    return (
+			<div>
+				<h2 className="bookshelf-title">{this.props.title}</h2>
+				<div className="bookshelf-books">
+					<ol className="books-grid">
+						{this.props.bShelf.map(book => (
 							<BookItem
-								book={book}
-								bChangeShelf={handleBookShelf}
-							/>
-						</li>
-					))}
-				</ol>
+								key={book.id}
+								bookId={book.id} 
+								onChangeShelf={this.props.onChangeShelf} />
+						))}
+					</ol>
+				</div>
 			</div>
-		</div>
-	)
+    )
+  }
 }
 
-Shelf.propTypes = {
-	books: PropTypes.array.isRequired,
-	title: PropTypes.string.isRequired
-}
 export default Shelf
