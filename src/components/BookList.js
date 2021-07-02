@@ -19,19 +19,19 @@ class BookList extends Component {
 				<div>
 					<Shelf
 						title="Currently Reading"
-						cat="currentlyReading"
+						case="currentlyReading"
 						books={this.props.books.filter(b => b.shelf === 'currentlyReading')}
 						onChangeShelf={this.handleBookShelf}
 					/>
 					<Shelf
 						title="Want to Read"
-						cat="wantToRead"
+						case="wantToRead"
 						books={this.props.books.filter(b => b.shelf === 'wantToRead')}
 						onChangeShelf={this.handleBookShelf}
 					/>
 					<Shelf
 						title="Read"
-						cat="read"
+						case="read"
 						books={this.props.books.filter(b => b.shelf === 'read')}
 						onChangeShelf={this.handleBookShelf}
 					/>

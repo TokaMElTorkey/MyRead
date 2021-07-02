@@ -15,20 +15,6 @@ class BookItem extends Component {
 	}
 
 	render() {
-		//To know the book author
-		if(this.props.book.authors !== undefined && Array.isArray(this.props.book.authors) && this.props.book.authors.length > 1) {
-				this.props.book.authors = this.props.book.authors.join(' and ');
-		} else if (this.props.book.authors !== undefined && Array.isArray(this.props.book.authors)) {
-				this.props.book.authors = this.props.book.authors[0];
-		} else if(this.props.book.authors === undefined) {
-				this.props.book.authors = '';
-		}
-
-		if(this.props.book.shelf === undefined) {
-				this.props.book.shelf = 'none';
-		}
-
-
 		return (
 			<div className="book">
 				<div className="book-top">

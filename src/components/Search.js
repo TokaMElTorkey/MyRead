@@ -14,19 +14,6 @@ class Search extends Component {
 		onChangeShelf: PropTypes.func.isRequired
 	}
 
-	//Filteration
-	section = (x, y) => {
-		let z;
-		if (y.length > x.length) {
-			z = y;
-			y = x;
-			x = z;
-		}
-		return x.filter(function (e) {
-			return y.indexOf(e) > -1;
-		});
-	}
-
 	updateQuery = (query) => {
 		if(query === '') {
 			this.setState({
@@ -35,7 +22,7 @@ class Search extends Component {
 		return
 		}
 
-		BooksAPI.search(query, 20).then((books) => {
+		BooksAPI.search(query).then((books) => {
 			this.updateBookState(books);
 				if (books !== undefined && books.error !== "Query is empty") {
 					this.setState({
@@ -47,6 +34,19 @@ class Search extends Component {
 				})
 			}
 		})
+	}
+
+	//Filteration
+	section = (x, y) => {
+		let z;
+		if (y.length > x.length) {
+			z = y;
+			y = x;
+			x = z;
+		}
+		return x.filter(function (e) {
+			return y.indexOf(e) > -1;
+		});
 	}
 
 	//Update book shelf 
@@ -95,7 +95,7 @@ class Search extends Component {
 					<div className="search-books-input-wrapper">
 						<input
 								type="text"
-								placeholder="Search by title or author"
+								placeholder="Search"
 								onChange={(event) => this.updateQuery(event.target.value)}
 						/>
 					</div>
