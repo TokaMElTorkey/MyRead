@@ -26,7 +26,6 @@ class BookItem extends Component {
 
 	render() {
 		return (
-			<li>
 			<div className="book">
         <div className="book-top">
           {this.state.newBook.imageLinks && (
@@ -48,13 +47,12 @@ class BookItem extends Component {
 							<option value="none">None</option>
 						</select>
 					</div>
-          </div>
-          <div className="book-title">{this.state.newBook.title}</div>
-          <div className="book-authors">
-            {this.state.newBook.authors ? this.state.newBook.authors : null}
-          </div>
-        </div>
-				</li>
+				</div>
+				<div className="book-title">{this.state.newBook.title}</div>
+				<div className="book-authors">
+					{this.state.newBook.authors ? this.state.newBook.authors : null}
+				</div>
+      </div>
 		)
 	}
 }

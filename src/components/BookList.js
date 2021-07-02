@@ -21,16 +21,19 @@ class BookList extends Component {
 					<Shelf
 						title="Currently Reading"
 						bShelf={currentlyReading} 
+						key="currentltyReading"
 						onChangeShelf={this.props.onChangeShelf}
 					/>
 					<Shelf
 						title="Want to Read"
 						bShelf={wantToRead} 
+						key="wantToRead"
 						onChangeShelf={this.props.onChangeShelf}
 					/>
 					<Shelf
 						title="Read"
 						bShelf={read} 
+						key="read"
 						onChangeShelf={this.props.onChangeShelf}
 					/>
 				</div>
