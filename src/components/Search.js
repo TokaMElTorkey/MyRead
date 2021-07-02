@@ -6,8 +6,8 @@ import Shelf from "./Shelf";
 
 class Search extends Component {
 	state = {
-		booksearched: [],
-		query:""
+		query:"",
+		booksearched: []
 	}
 
 	static propType = {
@@ -15,7 +15,7 @@ class Search extends Component {
 	}
 
 	searchBook = inputSearchBook => {
-    let query = inputSearchBook.trim()
+    let query = inputSearchBook
     if (query) {
       BooksAPI.search(query, 20).then(booksearched => {
         if (booksearched.error) {
@@ -24,7 +24,7 @@ class Search extends Component {
           this.setState({ booksearched })
         }
       })
-      this.setState({ query })
+			this.setState({ query })
     }else {
       this.setState({ query: '', booksearched: [] })
     }
@@ -50,14 +50,14 @@ class Search extends Component {
 				</div>
 				<div className="search-books-results">
 					<ol className="books-grid">
-						{this.state.booksearched.map(book => (
-							<li>
-								<Shelf
-									bShelf={this.state.booksearched}
-									onChangeShelf={this.props.onChangeShelf}
-								/>
-							</li>
-						))}
+					{this.state.booksearched.length !== 0 && (
+            <li>
+						<Shelf
+							bShelf={this.state.booksearched}
+							onChangeShelf={this.props.onChangeShelf}
+						/>
+					</li>
+          )}
 					</ol>
 				</div>
 			</div>

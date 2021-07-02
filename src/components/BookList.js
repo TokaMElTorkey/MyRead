@@ -8,9 +8,10 @@ class BookList extends Component {
 		books: PropTypes.array.isRequired,
 		onChangeShelf: PropTypes.func.isRequired
 	}
-
+	
 
 	render() {
+		
 		const currentlyReading = this.props.books.filter( book => (book.shelf === 'currentlyReading') )
 		const wantToRead = this.props.books.filter( book => (book.shelf === 'wantToRead') )
 		const read = this.props.books.filter( book => (book.shelf === 'read') )
